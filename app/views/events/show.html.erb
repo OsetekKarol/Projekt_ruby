@@ -1,0 +1,24 @@
+<h1><strong>Nazwa:&nbsp; <%= @event.title %></strong></h1>
+
+<p><strong>Opis:</strong> <%= @event.description %></p>
+<p><strong>Data:</strong> <%= @event.date %></p>
+
+<p><strong>Kategorie:</strong>
+  <% @event.categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>
+</p>
+
+<p><strong>Artyści biorący udział w wydarzeniu:</strong>
+
+  <% @event.users.each do |user| %>
+    <li><%= user.name %></li>
+  <% end %>
+</p>
+
+<a href="<%= edit_event_path(@event) %>" class="inline-block mt-6 text-blue-600 hover:underline">
+              Edytuj wydarzenie &nbsp;     &nbsp;
+            </a>
+<a href="<%= events_path%>" class="inline-block mt-6 text-blue-600 hover:underline">
+              Wróć do listy wydarzeń &nbsp;&nbsp;
+            </a>

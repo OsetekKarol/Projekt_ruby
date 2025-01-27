@@ -1,0 +1,16 @@
+<h1><strong>Wydarzenia dla <%= @user.name %></strong></h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <% @user.events.each do |event| %>
+    <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+        <div class="p-6">
+            <h2 class="text-xl font-bold text-gray-800"><%= event.title %></h2>
+            <p class="text-gray-600 mt-2"><%= truncate(event.description, length: 100) %></p>
+            <p class="text-gray-500 text-sm mt-4">Data: <%= event.date.strftime('%d %B %Y, %H:%M') %></p>
+            <a href="<%= event_path(event) %>" class="inline-block mt-6 text-blue-600 hover:underline">
+                Wyświetl szczegóły &rarr;
+            </a>
+        </div>
+    </div>
+<% end %>
+</div>

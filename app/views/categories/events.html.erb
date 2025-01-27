@@ -1,0 +1,8 @@
+<h1><strong>Wydarzenia w kategorii <%= @category.name %></strong></h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <% @events.each do |event| %>
+      <%= render partial: 'event_card', locals: { event: event} %> 
+  <% end %>
+</div>
+

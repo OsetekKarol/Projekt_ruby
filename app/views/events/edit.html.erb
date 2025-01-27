@@ -1,0 +1,41 @@
+<div class="bg-gray-100 min-h-screen py-12">
+  <div class="container mx-auto max-w-lg bg-white shadow-lg rounded-xl p-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Edytuj wydarzene</h1>
+
+    <%= form_with model: @event, local: true, class: "space-y-6" do |form| %>
+      <div>
+        <%= form.label :title,"Nazwa: ", class: "block text-gray-700 font-medium mb-2" %>
+        <%= form.text_field :title, value: @event.title, class: "w-full border-gray-300 rounded-lg shadow-sm p-2" %>
+      </div>
+
+      <div>
+        <%= form.label :description,"Opis: ", class: "block text-gray-700 font-medium mb-2" %>
+        <%= form.text_area :description, value: @event.description, class: "w-full border-gray-300 rounded-lg shadow-sm p-2" %>
+      </div>
+
+      <div>
+        <%= form.label :date,"Data: ", class: "block text-gray-700 font-medium mb-2" %>
+        <%= form.datetime_select :date, default: @event.date, class: "w-full border-gray-300 rounded-lg shadow-sm p-2" %>
+      </div>
+
+      <div>
+        <%= form.label :categories, "Kategorie: ", class: "block text-gray-700 font-medium mb-2" %>
+        <%= form.collection_check_boxes :category_ids, Category.all, :id, :name, checked: @event.categories.pluck(:id), item_wrapper_class: 'flex items-center space-x-2' do |b| %>
+          <%= b.check_box(class: "rounded-md text-blue-600") %> <%= b.text %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.label :users, "Artyści: ", class: "block text-gray-700 font-medium mb-2" %>
+        <%= form.collection_check_boxes :user_ids, User.all, :id, :name, checked: @event.users.pluck(:id), item_wrapper_class: 'flex items-center space-x-2' do |b| %>
+          <%= b.check_box(class: "rounded-md text-blue-600") %> <%= b.text %>
+        <% end %>
+      </div>
+
+      <div class="flex justify-between items-center">
+        <%= form.submit 'Edytuj wydarzenie', class: "bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition shadow-md" %>
+        <a href="<%= event_path(@event) %>" class="text-gray-500 hover:text-gray-700 transition">Anuluj</a>
+      </div>
+    <% end %>
+  </div>
+</div>
